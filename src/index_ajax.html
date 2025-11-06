@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini CRUD con fetch()</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<main>
+  <h1>Mini CRUD con fetch() (sin Base de Datos)</h1>
+  <p class="texto-explicativo">
+    Esta pantalla usa JavaScript para hablar con la API PHP y actualizar la tabla sin recargar la
+    página.
+  </p>
+
+  <div id="msg" role="status" aria-live="polite"></div>
+
+  <form id="formCreate" aria-labelledby="form-title">
+    <fieldset>
+      <legend id="form-title">Agregar nuevo usuario</legend>
+
+      <input type="hidden" name="index" id="inputIndex">
+
+      <label for="inputNombre">Nombre</label>
+      <input type="text" id="inputNombre" name="nombre" placeholder="Nombre" required maxlength="60">
+
+      <label for="inputEmail">Email</label>
+      <input type="email" id="inputEmail" name="email" placeholder="correo@dominio.com" required maxlength="120">
+    </fieldset>
+
+    <button type="submit" id="boton-submit">
+      Agregar usuario
+    </button>
+    <button type="button" id="boton-cancelar" class="boton-secundario" hidden>
+      Cancelar Edición
+    </button>
+
+    <span id="indicador-cargando" hidden>
+      Cargando...
+    </span>
+  </form>
+
+
+  <h2>Listado de usuarios</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      </tbody>
+    <tfoot>
+      <tr id="fila-estado-vacio">
+        <td colspan="4">No hay usuarios registrados todavía.</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p>
+    <a href="index.php">Ir a Parte 1 (clásica sin AJAX)</a>
+  </p>
+</main>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
