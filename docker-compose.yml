@@ -1,0 +1,22 @@
+services:
+  servidor_web_php_apache:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mini-crud-php84
+    ports:
+      - "8080:80" # Acceso desde tu equipo: http://localhost:8080
+    volumes:
+      - ./src:/var/www/html:rw,cached
+      - ./docker/apache.conf:/etc/apache2/conf-enabled/000-mini-crud.conf:ro
+    working_dir: /var/www/html
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html
+    command: >
+      bash -lc "docker-php-ext-enable opcache 2>/dev/null || true
+      && apache2-foreground"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/"]
+      interval: 10s
+      timeout: 2s
+      retries: 10
